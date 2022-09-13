@@ -9,7 +9,7 @@ extractSTM <- function(model, meta, raw_col='raw', n_words=10, n_docs=4) {
 
   # extract `n_words` prob & FREX words and `n_docs` documents from the model and meta
   alabel = c()
-  for (i in 1:n_docs){alabel = c(alabel, paste('article_', i, sep = ''))}
+  for (i in 1:n_docs){alabel = c(alabel, paste('document_', i, sep = ''))}
   header = c('name', 'prevalence', 'FREX', 'prob', alabel, 'label', 'trash')
 
   df <- data.frame()
@@ -29,3 +29,5 @@ extractSTM <- function(model, meta, raw_col='raw', n_words=10, n_docs=4) {
   colnames(df) <- header
   return(df)
 }
+
+test <- extractSTM(model_use, meta)

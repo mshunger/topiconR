@@ -1,5 +1,6 @@
 library(stm)
-extractSTM <- function(model, meta, raw_col='raw', n_words=10, n_docs=4) {
+
+extractSTM <- function(model, meta, doc_col='raw', n_words=10, n_docs=4) {
 
   # extract mean thetas per topic
   model$expected <- data.frame(colMeans(model$theta))
@@ -15,7 +16,7 @@ extractSTM <- function(model, meta, raw_col='raw', n_words=10, n_docs=4) {
   df <- data.frame()
   for (i in model$expected$name){
 
-    ft = findThoughts(model, meta[[raw_col]], topics=i, n=n_docs)
+    ft = findThoughts(model, meta[[doc_col]], topics=i, n=n_docs)
     docs = ft$docs[[1]]
     labeled = labelTopics(model, topics=model$expected$name, n=n_words)
     frex = paste(labeled$frex[i,], collapse=' ')
@@ -29,5 +30,3 @@ extractSTM <- function(model, meta, raw_col='raw', n_words=10, n_docs=4) {
   colnames(df) <- header
   return(df)
 }
-
-test <- extractSTM(model_use, meta)

@@ -1,6 +1,12 @@
 library(stm)
 
-extractSTM <- function(model, meta, doc_col='raw', n_words=10, n_docs=4) {
+extractSTM <- function(
+    model,
+    meta,
+    doc_col='text',
+    n_words=10,
+    n_docs=4
+    ) {
 
   # extract mean thetas per topic
   model$expected <- data.frame(colMeans(model$theta))

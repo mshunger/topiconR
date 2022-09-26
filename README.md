@@ -9,7 +9,7 @@ For now, the roadmap is as follows:
 - [x] extractor function for the *btm* package, similar to the stm extractor function
 	- the function returns a dataframe with topic numbers, top words, top documents, an empty column for the labels and a *trash* column
 
-- [ ] extractor function for the *lda* package, similar to the functions above
+- [x] extractor function for *lda*  models from the *topicmodels* package, similar to the functions above
 
 - [ ] a shiny application that can
   - [ ] import the extracted data

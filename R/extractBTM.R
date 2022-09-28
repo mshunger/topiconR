@@ -16,7 +16,7 @@ extractBTM <- function(
 
   alabel <- c()
   for (i in 1:n_docs){alabel = c(alabel, paste('document_', i, sep = ''))}
-  header <- c('name', 'top_words', alabel, 'label', 'trash')
+  header <- c('nr', 'name', 'top_terms', alabel, 'label', 'trash')
   to_ret <- data.frame()
 
   for (topic in 1:ncol(df)) {
@@ -31,9 +31,12 @@ extractBTM <- function(
 
     label <- ''
     trash <- FALSE
-    line = c(paste('Topic', topic, sep=' '), top_w, top_docs, label, trash)
+    line = c(topic, paste('Topic', topic, sep=' '), top_w, top_docs, label, trash)
     to_ret <- rbind(to_ret, line)
   }
   colnames(to_ret) <- header
+  to_ret$nr <- as.numeric(to_ret$nr)
+  to_ret <- to_ret[order(to_ret$nr, decreasing=FALSE),]
+  rownames(to_ret) <- to_ret$nr
   return(to_ret)
 }
